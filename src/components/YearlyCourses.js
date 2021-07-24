@@ -6,6 +6,7 @@ import CourseTopics from "./CourseTopics";
 import data from "../data.json";
 import Select from "react-select";
 import { TabSelector } from "./TabSelector";
+import YearlyFooter from "./YearlyFooter";
 
 export default function YearlyCourses() {
   const { yearly } = data[1];
@@ -75,28 +76,31 @@ export default function YearlyCourses() {
   };
 
   return (
-    <div>
-      <Select
-        value={selectedOption}
-        onChange={handleDropdownChange}
-        options={options}
-      />
-      <div>
-        <div>
-          {Object.keys(activeGrade.boards).map((board) => {
-            return (
-              <TabSelector
-                isActive={selectedTab === board}
-                onClick={() => setSelectedTab(board)}
-                name={board}
-                key={board}
-              >
-                {board}
-              </TabSelector>
-            );
-          })}
+    <>
+      <div className="yearly-courses course-wrap">
+        <div className="tabs-head">
+          <Select
+            value={selectedOption}
+            onChange={handleDropdownChange}
+            options={options}
+            className="select"
+          />
+          <div>
+            {Object.keys(activeGrade.boards).map((board) => {
+              return (
+                <TabSelector
+                  isActive={selectedTab === board}
+                  onClick={() => setSelectedTab(board)}
+                  name={board}
+                  key={board}
+                >
+                  {board}
+                </TabSelector>
+              );
+            })}
+          </div>
         </div>
-        <div>
+        <div className="tab-panels">
           {Object.keys(activeGrade.boards).map((board) => {
             return (
               <TabPanel hidden={selectedTab !== board} key={`panel${board}`}>
@@ -107,6 +111,7 @@ export default function YearlyCourses() {
           })}
         </div>
       </div>
-    </div>
+      <YearlyFooter />
+    </>
   );
 }

@@ -4,6 +4,7 @@ import data from "../data.json";
 import Select from "react-select";
 import { useTabs, TabPanel } from "react-headless-tabs";
 import { TabSelector } from "./TabSelector";
+import MonthlyFooter from "./MonthlyFooter";
 
 export default function MonthlyCourses() {
   const { monthly } = data[0];
@@ -54,43 +55,52 @@ export default function MonthlyCourses() {
   };
 
   return (
-    <div>
-      <Select
-        value={selectedOption}
-        onChange={handleDropdownChange}
-        options={options}
-      />
-      {gradetabs && gradetabs.length > 1 ? (
-        <div>
-          <div>
-            {Object.keys(activeGrade.boards).map((board) => {
-              return (
-                <TabSelector
-                  isActive={selectedTab == board}
-                  onClick={() => setSelectedTab(board)}
-                  name={board}
-                  key={board}
-                >
-                  {board}
-                </TabSelector>
-              );
-            })}
-          </div>
-          <div>
-            {Object.keys(activeGrade.boards).map((board) => {
-              return (
-                <TabPanel hidden={selectedTab != board} key={`panel${board}`}>
-                  <SessionInfo
-                    gradeData={Object.values(activeGrade.boards[board])}
-                  />
-                </TabPanel>
-              );
-            })}
-          </div>
+    <>
+      <div className="monthly-courses course-wrap">
+        <div className="tabs-head">
+          <Select
+            value={selectedOption}
+            onChange={handleDropdownChange}
+            options={options}
+            className="select"
+          />
         </div>
-      ) : (
-        <SessionInfo gradeData={Object.values(activeGrade.boards)[0]} />
-      )}
-    </div>
+
+        {gradetabs && gradetabs.length > 1 ? (
+          <>
+            <div className="tabs">
+              {Object.keys(activeGrade.boards).map((board) => {
+                return (
+                  <TabSelector
+                    isActive={selectedTab == board}
+                    onClick={() => setSelectedTab(board)}
+                    name={board}
+                    key={board}
+                  >
+                    {board}
+                  </TabSelector>
+                );
+              })}
+            </div>
+            <div className="session-wrap">
+              {Object.keys(activeGrade.boards).map((board) => {
+                return (
+                  <TabPanel hidden={selectedTab != board} key={`panel${board}`}>
+                    <SessionInfo
+                      gradeData={Object.values(activeGrade.boards[board])}
+                    />
+                  </TabPanel>
+                );
+              })}
+            </div>
+          </>
+        ) : (
+          <div className="session-wrap">
+            <SessionInfo gradeData={Object.values(activeGrade.boards)[0]} />
+          </div>
+        )}
+      </div>
+      <MonthlyFooter />
+    </>
   );
 }

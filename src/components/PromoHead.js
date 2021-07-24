@@ -2,8 +2,10 @@ import React from "react";
 
 export default function PromoHead() {
   return (
-    <div>
-      <p>Guaranteed Higher Scores! Only with easyMath</p>
+    <div className="promohead">
+      <div>
+        Guaranteed Higher Scores! Only with <strong>easyMath</strong>
+      </div>
     </div>
   );
 }

@@ -7,27 +7,27 @@ export default function GradeStats({ stats }) {
     <div className="grade-stats">
       <div>
         <p>Total sessions</p>
-        <p>{stats.total_sessions}</p>
+        <h3>{stats.total_sessions}</h3>
       </div>
       <div>
         <p>Online Pre Assignments</p>
-        <p>{stats.online_pre_assignments}</p>
+        <h3>{stats.online_pre_assignments}</h3>
       </div>
       <div>
         <p>Online Post Assignments</p>
-        <p>{stats.online_post_assignments}</p>
+        <h3>{stats.online_post_assignments}</h3>
       </div>
       <div>
         <p>Online Practice</p>
-        <p>{stats.online_assignments}</p>
+        <h3>{stats.online_assignments}</h3>
       </div>
       <div>
         <p>Online Tests</p>
-        <p>{stats.online_tests}</p>
+        <h3>{stats.online_tests}</h3>
       </div>
       <div>
         <p>Career Counselling Sessions with Edu Coach</p>
-        <p>{stats.career_counselling_sessions}</p>
+        <h3>{stats.career_counselling_sessions}</h3>
       </div>
     </div>
   );

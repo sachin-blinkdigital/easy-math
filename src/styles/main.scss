@@ -1,3 +1,6 @@
+@import "./fonts.scss";
+@import "./reset.scss";
+
 /* MIXINS */
 
 @mixin mq($size) {
@@ -32,8 +35,40 @@
   display: flex; // new
 }
 
-.grade-stats {
-  @include flexbox();
+$yellow: #f8cf48;
+$violet: #6153c9;
+$lightViolet: #bbb2f2;
+$blue: #0c2f90;
+
+$black: "Lato-Black";
+$bold: "Lato-Bold";
+$regular: "Lato-Regular";
+$light: "Lato-Light";
+
+input[type="radio"] {
+  margin-top: -4px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input[type="radio"]:after {
+  background-color: white;
+  border-radius: 25px;
+  box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.4),
+    0 1px 1px hsla(0, 0%, 100%, 0.8);
+  content: "";
+  display: block;
+  height: 12px;
+  left: 4px;
+  position: relative;
+  top: 4px;
+  width: 12px;
+}
+input[type="radio"]:checked:after {
+  background-color: $blue;
+  box-shadow: inset 0 0 0 1px #0000001f, inset 0 2px 2px #ffffff66,
+    0 1px 1px #ffffffcc, 0 0 2px 2px #7d7ee866;
 }
 
 .session-strip {
@@ -51,5 +86,486 @@
     p {
       flex: 33.33%;
     }
+  }
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  font-family: $regular;
+  @include mq(mobile) {
+    padding: 0;
+  }
+}
+
+.promohead {
+  max-width: 1100px;
+  margin: 0 auto;
+  //padding: 0 15px;
+  div {
+    margin-left: 15px;
+    padding: 10px 15px;
+    background: $yellow;
+    max-width: fit-content;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-family: $regular;
+    font-size: 14px;
+    strong {
+      font-family: $bold;
+    }
+  }
+  @include mq(mobile) {
+    div {
+      margin: 0 auto;
+    }
+  }
+}
+
+.content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 20px;
+  background: $violet;
+  color: white;
+  border-radius: 25px;
+  .commontab {
+    border: 0;
+    line-height: unset;
+    background: transparent;
+    color: $lightViolet;
+    font-family: $black;
+    padding: 8px 12px;
+    border-radius: 20px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .commontab.active {
+    background: $blue;
+    color: white;
+  }
+
+  .main-tabs {
+    margin-bottom: 20px;
+    margin-left: 30px;
+    button {
+      font-size: 20px;
+      padding: 12px 14px;
+    }
+    @include mq(mobile) {
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      button {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.select {
+  min-width: 120px;
+  max-width: 120px;
+  border-bottom: 1px solid white;
+  &:hover {
+    cursor: pointer;
+  }
+  .css-yk16xz-control,
+  .css-1pahdxg-control {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .css-1okebmr-indicatorSeparator {
+    display: none;
+  }
+  .css-1uccc91-singleValue {
+    color: white;
+    font-family: $regular;
+  }
+  .css-1pahdxg-control:hover {
+    //background-color: $blue !important  ;
+  }
+  .css-26l3qy-menu {
+    color: $blue;
+    ul {
+      li {
+        &:hover {
+          background-color: $blue;
+        }
+      }
+    }
+  }
+  .css-tlfecz-indicatorContainer {
+    color: white !important;
+  }
+}
+
+.tab-panels {
+  transition: all 0.5s ease-in;
+}
+
+.yearly-courses {
+  .tabs-head {
+    @include flexbox();
+    gap: 20px;
+    align-items: center;
+    @include mq(mobile) {
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+
+  .grade-stats {
+    @include flexbox();
+    gap: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    p {
+      font-size: 16px;
+      font-family: $bold;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    h3 {
+      color: $yellow;
+      font-size: 42px;
+      font-family: $black;
+    }
+    @include mq(mobile) {
+      flex-wrap: wrap;
+      div {
+        flex: calc(50% - 30px);
+        p {
+          font-size: 14px;
+        }
+        h3 {
+          font-size: 36px;
+        }
+      }
+    }
+  }
+
+  .course-topics {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    .head {
+      font-family: $black;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .topics {
+      line-height: 1.4;
+      font-family: $bold;
+    }
+    @include mq(mobile) {
+      .topics {
+        p {
+          flex: calc(50% - 30px);
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+.yearly-footer {
+  background: $blue;
+  padding: 40px 0;
+  .head {
+    @include flexbox();
+    justify-content: space-between;
+    margin-bottom: 40px;
+    @include mq(mobile) {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+  .badge {
+    background: white;
+    color: $blue;
+    width: fit-content;
+    font-size: 14px;
+    font-family: $black;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .vacant-seats {
+    flex: 1;
+    line-height: 1.4;
+    h3 {
+      font-size: 24px;
+      font-family: $black;
+    }
+    .cost {
+      color: $yellow;
+    }
+  }
+  .subscription {
+    flex: 1;
+    line-height: 1.4;
+    h3 {
+      font-size: 24px;
+      font-family: $black;
+    }
+    .cost {
+      color: $yellow;
+    }
+    .cost-old {
+      color: $yellow;
+      text-decoration: line-through;
+      font-size: 18px;
+      padding-left: 5px;
+    }
+  }
+
+  .book-cta {
+    @include flexbox();
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    a {
+      padding: 12px 14px;
+      background: $yellow;
+      border-radius: 20px;
+      color: black;
+      border: 1px solid $yellow;
+      transition: all 0.3s ease;
+      width: fit-content;
+      height: fit-content;
+      &:hover {
+        background: transparent;
+        color: $yellow;
+      }
+    }
+  }
+
+  .foot {
+    @include flexbox();
+    justify-content: space-between;
+    align-items: center;
+    p {
+      font-size: 22px;
+      font-family: $bold;
+      line-height: 1.4;
+    }
+    .tnc {
+      font-family: $bold;
+      font-size: 14px;
+      a {
+        transition: all 0.3s ease;
+        text-decoration: underline;
+        &:hover {
+          color: $yellow;
+        }
+      }
+    }
+    @include mq(mobile) {
+      flex-direction: column;
+      gap: 20px;
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+}
+.monthly-courses {
+  .tabs-head {
+    display: inline-flex;
+    @include mq(mobile) {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+  }
+  .tabs {
+    display: inline-flex;
+    @include mq(mobile) {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+  }
+  .session-wrap {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    .session-strip {
+      background: #ffffff1f;
+      padding: 10px;
+      border-radius: 10px;
+      line-height: 1.4;
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+      input {
+        flex: 10%;
+      }
+      div {
+        flex: 30%;
+      }
+      .validity {
+        h3 {
+          font-family: $black;
+          font-size: 20px;
+        }
+        p {
+          font-family: $bold;
+          font-size: 14px;
+        }
+      }
+      .price {
+        .cost {
+          color: $yellow;
+          font-family: $black;
+          font-size: 22px;
+        }
+        .cost-old {
+          font-family: $black;
+          color: $yellow;
+          text-decoration: line-through;
+          font-size: 16px;
+          padding-left: 5px;
+        }
+        .badge {
+          background: $violet;
+          width: fit-content;
+          font-size: 12px;
+          font-family: $black;
+          padding: 2px 4px;
+          border-radius: 4px;
+        }
+      }
+      .session {
+        h3 {
+          font-family: $black;
+          font-size: 20px;
+        }
+        p {
+          font-family: $bold;
+          font-size: 14px;
+        }
+      }
+
+      @include mq(mobile) {
+        .validity {
+          h3 {
+            font-size: 16px;
+          }
+          p {
+            font-size: 12px;
+          }
+        }
+        .price {
+          .cost {
+            font-size: 18px;
+          }
+          .cost-old {
+            font-size: 14px;
+          }
+        }
+        .session {
+          h3 {
+            font-size: 16px;
+          }
+          p {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.monthly-footer {
+  background: $blue;
+  padding: 40px 15px;
+
+  .head {
+    @include flexbox();
+    margin-bottom: 40px;
+    div {
+      flex: 1;
+      p {
+        font-family: $black;
+        font-size: 22px;
+        line-height: 1.4;
+      }
+    }
+    .mid {
+      @include flexbox();
+      justify-content: center;
+    }
+    .book-cta {
+      @include flexbox();
+      flex: 1;
+      align-items: center;
+      justify-content: flex-end;
+      a {
+        padding: 12px 14px;
+        background: $yellow;
+        border-radius: 20px;
+        color: black;
+        border: 1px solid $yellow;
+        transition: all 0.3s ease;
+        width: fit-content;
+        height: fit-content;
+        &:hover {
+          background: transparent;
+          color: $yellow;
+        }
+      }
+    }
+    @include mq(mobile) {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+      div p {
+        font-size: 18px;
+      }
+      .book-cta {
+        justify-content: center;
+      }
+    }
+  }
+
+  .foot {
+    @include flexbox();
+    justify-content: flex-end;
+    .tnc {
+      font-family: $bold;
+      font-size: 14px;
+      a {
+        transition: all 0.3s ease;
+        text-decoration: underline;
+        &:hover {
+          color: $yellow;
+        }
+      }
+    }
+    @include mq(mobile) {
+      justify-content: center;
+    }
+  }
+}
+
+.footer {
+  padding: 40px 30px;
+  border-radius: 25px;
+  @include mq(mobile) {
+    padding: 20px 15px;
+    text-align: center;
+    .badge {
+      margin: 0 auto;
+    }
+  }
+}
+.course-wrap {
+  padding: 0 30px;
+  @include mq(mobile) {
+    padding: 0 15px;
   }
 }
